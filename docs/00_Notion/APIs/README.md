@@ -50,7 +50,7 @@ Base URL: /api
     
     ```json
     {
-      "loginId": "user01",
+      "loginId": "{id, userid}",
       "password": "password123!"
     }
     ```
