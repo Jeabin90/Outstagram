@@ -26,7 +26,7 @@ export const config = {
 
     client: {
         port: parseInt(required("CLIENT_PORT", 5173)),
-        address: required("CLIENT_ADDRESS", "localhost"),
+        address: required("CLIENT_ADDRESS", "localhost")
     },
     
     db: {
