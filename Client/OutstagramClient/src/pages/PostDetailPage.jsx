@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
+
 import { fetchPost, updatePost } from "../api/post"
 import { fetchComments, postComment, deleteComment } from "../api/comments"
 import { changeBookmarkedState } from "../api/bookmarks"
 import Bookmark from "../components/Bookmark"
 import config from "../utils/config"
+
 
 // [2026-07-23 09:00:40]
 // 최초 렌더링 시에 할일들 []
@@ -27,6 +29,7 @@ export default function PostDetailPage() {
   const [postFetching, setPostFetching] = useState(true)
   const [commentsFetching, setCommentsFetching] = useState(true)
   const [bookmarked, setBookmarked] = useState(false)
+
   const [isEditing, setIsEditing] = useState(false)
   // 직접 작성하는 댓글 창
   const [commentInput, setcommentInput] = useState("")

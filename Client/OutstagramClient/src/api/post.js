@@ -3,6 +3,7 @@ import { useNavigate } from "react-router"
 
 
 
+
 export async function fetchPost({ postId, navigate }) {
   console.log(`fetchPost({ postId: ${postId} }) start`)
 
@@ -17,6 +18,7 @@ export async function fetchPost({ postId, navigate }) {
       navigate("/main")
     }
 
+
     const postData = await response.json()
 
     if(postData.success !== true) {
@@ -26,11 +28,24 @@ export async function fetchPost({ postId, navigate }) {
     console.log(`fetchPost({ postId: ${postId} }) end`, postData)
 
     return postData.data
+
   }
   catch (error) {
     navigate("/main")
   }
   // async function fetchPost() 종료
+}
+
+
+// 게시물 생성 API
+export async function createPostApi(FormData) {
+  return await apiFetch({
+    path:"/posts",
+    options: {
+      method: "POST",
+      body: FormData
+    }
+  })
 }
 
 export async function updatePost({ postId, title, content, existingImageUrls, newImages }) {

@@ -1,4 +1,5 @@
 import express from "express"
+import cors from "cors"
 import { config } from "./config.js"
 import { connectDB } from "./101_db/database.js"
 import ApiRouter from "./01_router/index.js"
@@ -26,6 +27,7 @@ app.use(
     })
 )
 
+app.use(cors())
 app.use(express.json())
 app.use(
     cors({
