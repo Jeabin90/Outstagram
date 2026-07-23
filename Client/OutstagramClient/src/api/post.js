@@ -3,11 +3,12 @@ import { useNavigate } from "react-router"
 
 
 
-export async function fetchPost() {
-  const navigate = useNavigate()
+
+export async function fetchPost({ postId, navigate }) {
+  console.log(`fetchPost({ postId: ${postId} }) start`)
 
   try {
-    const response = await apiFetch({ path: `/post/${postId}`, options: { method: "POST" } })
+    const response = await apiFetch({ path: `/posts/${postId}`, options: { method: "GET" } })
 
     if(!response.ok) {
       if(response.status === 404) {
@@ -17,19 +18,24 @@ export async function fetchPost() {
       navigate("/main")
     }
 
-    const postdata = await response.json()
 
-    if(postdata.success !== true) {
+    const postData = await response.json()
+
+    if(postData.success !== true) {
       navigate("/main")
     }
 
-    return postData
+    console.log(`fetchPost({ postId: ${postId} }) end`, postData)
+
+    return postData.data
+
   }
   catch (error) {
     navigate("/main")
   }
   // async function fetchPost() 종료
 }
+
 
 // 게시물 생성 API
 export async function createPostApi(FormData) {
@@ -40,4 +46,28 @@ export async function createPostApi(FormData) {
       body: FormData
     }
   })
+}
+
+export async function updatePost({ postId, title, content, existingImageUrls, newImages }) {
+  try {
+    const formData = new FormData()
+
+    formData.append("title", title)
+    formData.append("content", content)
+    formData.append("existingImageUrls", JSON.stringify(existingImageUrls))
+  
+    newImages.forEach(file => {
+      formData.append("newImages", file)
+    });
+
+    await apiFetch({
+      path: `/posts/${postId}`,
+      options: {
+        method: "PATCH",
+        body: formData
+      }
+    })
+  } catch (error) {
+
+  }
 }
