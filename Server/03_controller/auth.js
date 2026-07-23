@@ -77,7 +77,15 @@ export async function me(req, res) {
 }
 
 // 로그아웃 (구현안함)
-// async function logout(req, res) {}
+export async function logout(req, res) {
+    try {
+
+        res.status(200).json({ message: "로그아웃" })
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({message: "서버 에러 발생"})
+    }
+}
 
 // JWT 토큰 생성
 async function createJwtToken(id) {
