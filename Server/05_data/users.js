@@ -59,6 +59,10 @@ import User from "../103_models/user.js";
  * createdAt: Date,
  * updatedAt: Date
  */
+<<<<<<< HEAD
+export async function createUser({ userid, passwordHash, name, email }) {
+  return await User.create({ userid, passwordHash, name, email })
+=======
 export async function createUser({ userid, passwordHash, name, nickName, email }) {
   return await User.create({ userid, passwordHash, name, nickName, email })
 }
@@ -72,6 +76,7 @@ export async function findByUserid(userid) {
 // 이메일로 회원 중복확인
 export async function findByEmail(email) {
   return User.findOne({ email }).select("_id")
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 }
 
 /**
@@ -87,11 +92,17 @@ export async function findByEmail(email) {
  * createdAt: Date,
  * updatedAt: Date
  */
+<<<<<<< HEAD
+export async function findByUserid(userid) {
+  return await User.findOne({ userid }).select("_id userid name email createdAt updatedAt")
+}
+=======
 // 아이디로 회원 찾기
 // export async function findByUserid(userid) {
 //   return await User.findOne({ userid }).select("_id userid name email createdAt updatedAt")
 // }
 
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 
 /**
  * users.userid를 통해 사용자의 모든 컬럼 뽑아주기 (passwordHash 포함)
@@ -157,3 +168,43 @@ export async function findById(id) {
 export async function findByIdIncludePassword(id) {
   return await User.findById(id).select("_id userid passwordHash name email createdAt updatedAt")
 }
+<<<<<<< HEAD
+
+/**
+ * 회원정보 수정
+ *
+ * input:
+ * - id: 로그인 사용자의 _id
+ * - updateData: 수정할 필드
+ *
+ * output:
+ * - 수정된 사용자 정보
+ */
+export async function updateById(id, updateData) {
+  return await User.findByIdAndUpdate(
+    id,
+    {
+      $set: updateData
+    },
+    {
+      new: true,          // 수정된 결과를 반환
+      runValidators: true // Schema 유효성 검사 실행
+    }
+  ).select("_id userid name email createdAt updatedAt");
+}
+
+/**
+ * 회원 삭제
+ *
+ * input:
+ * - id: 로그인 사용자의 _id
+ *
+ * output:
+ * - 삭제된 사용자 정보
+ */
+export async function deleteById(id) {
+  return await User.findByIdAndDelete(id)
+    .select("_id userid name email createdAt updatedAt");
+}
+=======
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f

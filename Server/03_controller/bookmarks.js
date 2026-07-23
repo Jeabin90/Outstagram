@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+
+// 
+export async function getMyBookmarks(req, res) {
+}
+
+
+// 
+export async function createBookmark(req, res) {
+}
+
+
+// 
+export async function deleteBookmark(req, res) {
+}
+=======
 import * as bookmarkService from "../04_service/bookmarks.js"
 
 // getMyBookmarks
@@ -89,3 +105,4 @@ export async function deleteBookmark(req, res) {
     }
 }
 
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f

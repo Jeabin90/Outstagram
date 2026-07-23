@@ -1,5 +1,28 @@
 import * as postService from "../04_service/posts.js"
 import * as bookmarkService from "../04_service/bookmarks.js"
+<<<<<<< HEAD
+import { ApiError } from "../102_utils/api/ApiError.js";
+
+// 포스트를 작성하는 함수
+export async function createPost(req, res) {
+    const { title, content } = req.body
+    const files = req.files || []
+
+    if (!title?.trim() || !content?.trim()) {
+        throw new ApiError(400, "title과 content 값이 비어있습니다.")
+    }
+
+    const imageUrls = files.map((file) => {
+        return `/uploads/posts/${file.filename}`
+    })
+
+    const post = await postService.createPost({ userId: req.id, title, content, imageUrls })
+
+    return res.status(201).json({
+        success: true,
+        data: post
+    })
+=======
 import {ApiError} from "../102_utils/api/ApiError.js";
 import logger from "../102_utils/log.js";
 
@@ -22,6 +45,7 @@ export async function createPost(req, res) {
       success: true,
       data: post
   })
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 }
 
 // 모든 포스트를 가져오는 함수
@@ -59,7 +83,11 @@ export async function createPost(req, res) {
  * }
  */
 export async function getPosts(req, res) {
+<<<<<<< HEAD
+    let { page = 1, size = 10, keyword = "", sort = "latest" } = req.query
+=======
     let { page=1, size=10 , keyword="" , sort="latest" } = req.query
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 
 
     page = Number(page)
@@ -71,12 +99,20 @@ export async function getPosts(req, res) {
     }
 
 
+<<<<<<< HEAD
+    if (!["latest", "newest", "mostViewed"].includes(sort)) {
+=======
     if(!["latest", "newest", "mostViewed"].includes(sort)) {
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
         sort = "newest"
     }
     // 그대로 반환 가능한 응답 데이터 뽑아주기
     const { posts, pagination }
+<<<<<<< HEAD
+        = await postService.getPosts({ page, size, keyword, sort })
+=======
             = await postService.getPosts({ page, size , keyword , sort })
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 
     res.status(200).json({
         success: true,
@@ -95,18 +131,28 @@ export async function getPost(req, res) {
     const post = await postService.getById(id)
 
     // 뽑은 post가 있는지 검사
+<<<<<<< HEAD
+    if (!post) {
+=======
     if(!post) {
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
         return res.status(404).json({ message: `${id}의 포스트가 없습니다` })
     }
     let editable = false
     // post의 authorId가 현재 userId와 동일한지 확인
+<<<<<<< HEAD
+    if (String(post.authorId) === String(userId)) {
+=======
     if(String(post.authorId) === String(userId)) {
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
         editable = true
     }
 
     // 사용자가 포스팅을 북마크 했는지 확인
     const bookmarked = await bookmarkService.checkUserBookmarkPostById({ userId, postId: post._id })
 
+<<<<<<< HEAD
+=======
     // 조회수 올려주기 [실패해도 그대로 반환해주기]
     try {
         await postService.increasePostView({ postId })
@@ -116,6 +162,7 @@ export async function getPost(req, res) {
     }
 
 
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
     // 반환하기
     return res.status(200).json({
         success: true,
@@ -124,8 +171,13 @@ export async function getPost(req, res) {
             title: post.title,
             content: post.content,
             author: {
+<<<<<<< HEAD
+                userId: post.authorId,
+                loginId: post.authorUserid
+=======
                 id: post.authorId,
                 userid: post.authorUserid
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
             },
             viewCount: post.viewCount,
             imageUrls: post.imageUrls,
@@ -173,7 +225,11 @@ export async function updatePost(req, res) {
 
     const updatedPost = await postService.updatePost({ postId, userId, title, content, imageUrls })
 
+<<<<<<< HEAD
+    if (!updatedPost) {
+=======
     if(!updatedPost) {
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
         return res.status(404).json({
             success: false,
             data: "no content"
@@ -199,11 +255,19 @@ export async function deletePost(req, res) {
         return res.status(404).json({ message: `${postId}의 포스트가 없습니다` })
     }
 
+<<<<<<< HEAD
+    if (!post.authorId || !req.id || String(post.authorId) !== String(req.id)) {
+        return res.sendStatus(403)
+    }
+    const deleted = await postService.removeByPostId({ postId, userId })
+    if (deleted) {
+=======
     if (!post.authorId || !req.id ||  String(post.authorId) !== String(req.id)) {
         return res.sendStatus(403)
     }
     const deleted = await postService.removeByPostId({ postId, userId })
     if(deleted) {
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
         return res.sendStatus(204)
     }
     // 동일하지만 명시적으로 반환
