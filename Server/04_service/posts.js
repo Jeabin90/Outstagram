@@ -135,4 +135,14 @@ export async function removeByPostId({ postId, userId }){
   }
 
   return true
+<<<<<<< HEAD
+=======
+}
+
+/**
+ * 포스트id의 viewCount만 count(=1) 올려주는 함수
+ */
+export async function increasePostView({ postId, count=1 }) {
+  await postRepository.increasePostView({ postId, count })
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 }

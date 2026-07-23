@@ -3,6 +3,10 @@ import { config } from "../config.js"
 import * as userRepository from "../05_data/users.js"
 import mongoose from "mongoose";
 import { ApiError } from "../102_utils/api/ApiError.js";
+<<<<<<< HEAD
+=======
+import logger from "../102_utils/log.js";
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 
 const AUTH_ERROR = { message: "인증에러" }
 
@@ -27,7 +31,13 @@ export const isAuth = async (req, res, next) => {
 
   // Bearer으로 시작하는지 확인하기
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
+<<<<<<< HEAD
     console.log("헤더에러")
+=======
+    logger("02_middleware/auth.js isAuth", 
+      `authHeader not exists or not Bearer Token`
+    )
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
     return res.status(401).json(AUTH_ERROR)
   }
 

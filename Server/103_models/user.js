@@ -31,6 +31,15 @@ const userSchema = new mongoose.Schema(
       trim: true
     },
 
+<<<<<<< HEAD
+=======
+    nickName: {
+      type: String,
+      required: true,
+      trim: true
+    },
+
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
     email: {
       type: String,
       required: true,

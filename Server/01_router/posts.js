@@ -8,8 +8,13 @@ import { uploadPostImages, updatePostImages } from "../02_middleware/upload.js"
 const router = express.Router()
 
 // 전체 포스트 가져오기 [x]
+<<<<<<< HEAD
 router.get("/", isAuth, postController.getPosts)
 
+=======
+//router.get("/",isAuth,postController.getPosts)
+router.get("/",postController.getPosts)
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 // 글번호에 대한 포스트 가져오기 [x]
 router.get("/:id", isAuth, postController.getPost)
 
