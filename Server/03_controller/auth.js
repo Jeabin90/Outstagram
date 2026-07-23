@@ -3,6 +3,29 @@ import * as userRepository from "../05_data/users.js"
 import * as bcrypt from "bcrypt"
 import { config } from "../config.js"
 import jwt from "jsonwebtoken"
+<<<<<<< HEAD
+import { ApiError } from "../102_utils/api/ApiError.js";
+import mongoose from "mongoose";
+
+// 회원가입
+export async function signup(req, res) {
+    const { userid, password, name, email } = req.body
+
+    // 회원 중복 체크
+    const found = await userRepository.findByUserid(userid)
+    if (found) {
+        return res.status(409).json({ message: `${userid}이 이미 있습니다` })
+    }
+    const hashed = bcrypt.hashSync(password, config.bcrypt.saltRounds)
+
+    // 회원 가입
+    const user = await userRepository.createUser({
+        userid, passwordHash: hashed, name, email
+    })
+    const token = await createJwtToken(user._id)
+    console.log(token)
+    res.status(201).json({ token, user })
+=======
 import {ApiError} from "../102_utils/api/ApiError.js";
 import mongoose from "mongoose";
 import * as userDuplicated from "./users.js"
@@ -116,6 +139,7 @@ export async function signup(req, res) {
             message: "회원가입 처리 중 오류가 발생했습니다."
         })
     }
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 }
 
 // 로그인
@@ -150,7 +174,10 @@ export async function login(req, res) {
             // updatedAt: user.updatedAt,
         }
     })
+<<<<<<< HEAD
+=======
 
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 }
 
 // 로그인 유지
@@ -161,15 +188,26 @@ export async function me(req, res) {
     }
 
     const user = await userRepository.findById(req.id)
+<<<<<<< HEAD
+    if (!user) {
+        return res.status(404).json({ message: "일치하는 사용자가 없음" })
+    }
+    res.status(200).json({
+        token: req.token, userid: user.userid
+=======
     if(!user){
         return res.status(404).json({ message: "일치하는 사용자가 없음"})
     }
     res.status(200).json({ 
       token: req.token, userid: user.userid
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
     })
 }
 
 // 로그아웃 (구현안함)
+<<<<<<< HEAD
+// async function logout(req, res) {}
+=======
 export async function logout(req, res) {
     try {
 
@@ -179,6 +217,7 @@ export async function logout(req, res) {
         res.status(500).json({message: "서버 에러 발생"})
     }
 }
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 
 // JWT 토큰 생성
 async function createJwtToken(id) {

@@ -1,11 +1,30 @@
 import express from "express"
+<<<<<<< HEAD
+=======
 import cors from "cors"
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 import { config } from "./config.js"
 import { connectDB } from "./101_db/database.js"
 import ApiRouter from "./01_router/index.js"
 import { errorHandler } from "./102_utils/api/error.middleware.js"
 import logger from "./102_utils/log.js";
 import morgan from "morgan"
+<<<<<<< HEAD
+import {currTime} from "./102_utils/time.js";
+import cors from "cors"
+
+const app = express()
+
+app.use(
+    cors({
+        origin: `http://${config.client.address}:${config.client.port}`,
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        allowedHeaders: ["Content-Type"]
+    })
+)
+
+app.use(express.json())
+=======
 <<<<<<< HEAD
 import { currTime } from "./102_utils/time.js";
 =======
@@ -40,6 +59,7 @@ app.use(
         // allowedHeaders: ["Content-Type"]
     })
 )
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 app.use("/api", ApiRouter)
 
 morgan.token("currTime", () => {
@@ -50,6 +70,8 @@ app.use(morgan("[:currTime] :http-version :method :url \nstatus\: :status\nremot
 // 정적 파일 경로 열어주기
 app.use("/uploads", express.static("00_public/uploads"))
 
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 app.use(
     cors({
@@ -62,6 +84,7 @@ app.use(
 =======
 >>>>>>> 9fcca58a8fbfb746ce0b555c00b6872caf6199e6
 
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 app.use((req, res) => {
     res.sendStatus(404)
 })
@@ -73,8 +96,12 @@ app.use(errorHandler)
 connectDB().then(() => {
     app.listen(config.host.port, config.host.address, () => {
         logger("/app.js",
+<<<<<<< HEAD
+            `Outstagram Server Activate... [origin=http://${config.host.address}:${config.host.port}]`)
+=======
             `Outstagram Server Activate... [origin=http://${config.host.address}:${config.host.port}]
 [allowed Origin=http://${config.client.address}:${config.client.port}]`)
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
         console.log("")
     })
 }).catch(console.error)

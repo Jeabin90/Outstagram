@@ -1,4 +1,6 @@
 import Comment from "../103_models/comment.js";
+<<<<<<< HEAD
+=======
 import {ApiError} from "../102_utils/api/ApiError.js";
 
 //댓글 생성 
@@ -26,6 +28,7 @@ export async function deleteByCommentId(CommentId,userId){
     }
     return await  Comment.deleteOne({_id: CommentId })
 }
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 
 /**
  * postId를 통해 모든 댓글 삭제하기
@@ -34,4 +37,8 @@ export async function deleteByCommentId(CommentId,userId){
  */
 export async function deleteAllByPostId({ postId, session }) {
     return await Comment.deleteMany({ postId: postId }).session(session)
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f

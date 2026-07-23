@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 .agent/
 .idea/
 node_modules/
@@ -11,6 +13,7 @@ Server/00_public/uploads/**/*
 !.env.example
 
 
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 # Logs
 logs
 *.log

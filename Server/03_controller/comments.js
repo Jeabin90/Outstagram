@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+export async function getCommentsByPostId(req, res) {
+}
+
+export async function createComment(req, res) {
+=======
 import *  as commentService from "../04_service/comments.js"
 import {ApiError} from "../102_utils/api/ApiError.js"
 import * as userRepository from "../05_data/users.js"
@@ -28,8 +34,15 @@ export async function deleteComment(req,res) {
     const user_Id = req.id
     await commentService.deleteByComment(commentId, user_Id);
     res.status(204).send("204 No Content")
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 }
 
 // 댓글 업데이트 기능은 존재하지 않음
 // export async function updateComment(req, res) {
 // }
+<<<<<<< HEAD
+
+export async function deleteComment(req, res) {
+}
+=======
+>>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
