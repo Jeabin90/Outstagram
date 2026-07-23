@@ -11,7 +11,7 @@ router.post("/signup", authController.signup)
 router.post("/login", authController.login)
 
 // 로그아웃 (구현 안함)
-// router.post("/logout", authController.logout)
+router.post("/logout", authController.logout)
 
 // 로그인 유지 체크 및 본인 데이터 확인 [x]
 router.get("/me", isAuth, authController.me)
