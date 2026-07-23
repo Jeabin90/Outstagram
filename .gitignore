@@ -9,8 +9,6 @@ Server/00_public/uploads/**/*
 
 .env
 !.env.example
-<<<<<<< HEAD
-=======
 
 
 # Logs
@@ -37,4 +35,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
->>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f

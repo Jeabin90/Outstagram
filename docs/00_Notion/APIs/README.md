@@ -50,15 +50,7 @@ Base URL: /api
     
     ```json
     {
-<<<<<<< HEAD
-      "loginId": "user01",
-=======
-<<<<<<< HEAD
-      "loginId": "{id, userid}",
-=======
-      "userId": "user01",
->>>>>>> 9fcca58a8fbfb746ce0b555c00b6872caf6199e6
->>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
+      "userid": "user01",
       "password": "password123!"
     }
     ```
@@ -73,6 +65,7 @@ Base URL: /api
         "user": {
     			"id": "user.userid"
         }
+      }
     }
     ```
     
@@ -261,12 +254,8 @@ Base URL: /api
     {
       "success": true,
       "data": {
-<<<<<<< HEAD
-        "userId": "사용자 식별자",
-        "loginId": "user01",
-=======
-        "userId": {"id", "userid"}
->>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
+        "id": "사용자 식별자",
+        "userid": "user01",
         "name": "홍길동",
         "email": "user01@example.com",
         "createdAt": "2026-07-21T10:00:00.000Z",

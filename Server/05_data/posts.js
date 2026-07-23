@@ -193,8 +193,6 @@ export async function updatePost({ postId, title, content, imageUrls }) {
  */
 export async function deleteByPostId({postId, session}) {
     return await Post.findByIdAndDelete(postId).session(session)
-<<<<<<< HEAD
-=======
 }
 
 /**
@@ -214,5 +212,4 @@ export async function increasePostView({ postId, count }) {
             runValidators: true
         }
     )
->>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 }

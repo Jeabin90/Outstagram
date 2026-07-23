@@ -1,17 +1,49 @@
 import * as userRepository from "../05_data/users.js"
-<<<<<<< HEAD
-import * as postRepository from "../05_data/posts.js"
-=======
->>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 // api/auth/signup 가 있어서 구현 안함
 // export async function createUser(req, res) {
 // }
 
 export async function checkUseridDuplicated(req, res) {
-<<<<<<< HEAD
-}
+  try {
+        const { userid } = req.query
 
-export async function checkEmailDuplicated(req, res) {
+        // 아이디가 전달되지 않은 경우
+        if (!userid) {
+            return res.status(400).json({
+                message: "아이디를 입력해주세요."
+            })
+        }
+
+        // 아이디 형식 검사
+        const useridRegex = /^[a-z0-9]{4,12}$/
+
+        if (!useridRegex.test(userid)) {
+            return res.status(400).json({
+                message: "아이디는 소문자와 숫자를 사용하여 4~12자로 입력해주세요."
+            })
+        }
+
+        // DB에서 아이디 조회
+        const foundUserid = await userRepository.findByUserid(userid)
+
+        if (foundUserid) {
+            return res.status(409).json({
+                available: false,
+                message: "이미 사용 중인 아이디입니다."
+            })
+        }
+
+        return res.status(200).json({
+            available: true,
+            message: "사용 가능한 아이디입니다."
+        })
+    } catch (error) {
+        console.error("아이디 중복 확인 오류:", error)
+
+        return res.status(500).json({
+            message: "아이디 중복 확인 중 오류가 발생했습니다."
+        })
+    }
 }
 
 export async function getMyProfile(req, res) {
@@ -135,7 +167,6 @@ export async function getMyBookmarks(req, res) {
     }catch(error){
         
     }
-=======
     try {
         const { userid } = req.query
 
@@ -222,18 +253,4 @@ export async function checkEmailDuplicated(req, res) {
     }
 }
 
-export async function getMyProfile(req, res) {
-}
 
-export async function updateMyProfile(req, res) {
-}
-
-export async function deleteMyAccount(req, res) {
-}
-
-export async function getMyPosts(req, res) {
-}
-
-export async function getMyBookmarks(req, res) {
->>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
-}

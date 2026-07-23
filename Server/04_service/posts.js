@@ -135,8 +135,6 @@ export async function removeByPostId({ postId, userId }){
   }
 
   return true
-<<<<<<< HEAD
-=======
 }
 
 /**
@@ -144,5 +142,4 @@ export async function removeByPostId({ postId, userId }){
  */
 export async function increasePostView({ postId, count=1 }) {
   await postRepository.increasePostView({ postId, count })
->>>>>>> 4de5ac110adbae62320d8a9ea107b558dd9a1b8f
 }
