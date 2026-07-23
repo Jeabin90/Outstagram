@@ -6,11 +6,7 @@ import ApiRouter from "./01_router/index.js"
 import { errorHandler } from "./102_utils/api/error.middleware.js"
 import logger from "./102_utils/log.js";
 import morgan from "morgan"
-<<<<<<< HEAD
 import { currTime } from "./102_utils/time.js";
-=======
-import {currTime} from "./102_utils/time.js";
->>>>>>> 9fcca58a8fbfb746ce0b555c00b6872caf6199e6
 import cors from "cors"
 
 const app = express()
@@ -50,7 +46,6 @@ app.use(morgan("[:currTime] :http-version :method :url \nstatus\: :status\nremot
 // 정적 파일 경로 열어주기
 app.use("/uploads", express.static("00_public/uploads"))
 
-<<<<<<< HEAD
 app.use(
     cors({
         origin: `http://${config.client.address}:${config.client.port}`
@@ -59,8 +54,6 @@ app.use(
     })
 )
 
-=======
->>>>>>> 9fcca58a8fbfb746ce0b555c00b6872caf6199e6
 
 app.use((req, res) => {
     res.sendStatus(404)
