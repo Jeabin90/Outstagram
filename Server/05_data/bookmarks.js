@@ -10,6 +10,24 @@ export async function checkUserBookmarkPostById({ userId, postId }) {
     return await Bookmark.exists({ userId, postId })
 }
 
+// 북마크 조회
+export async function getMyBookmarks({ userId }) {
+    return await Bookmark.find({ userId })
+        .populate("postId")
+        .sort({ createdAt: -1 })
+}
+
+
+// 북마크 생성
+export async function createBookmark({ userId, postId }) {
+    return await Bookmark.create({ userId, postId })
+}
+
+// 북마트 삭제
+export async function deleteBookmark({ userId, postId }) {
+    return await Bookmark.deleteOne({ userId, postId })
+}
+
 
 /**
  * postId를 통해 모든 북마크 삭제하기
