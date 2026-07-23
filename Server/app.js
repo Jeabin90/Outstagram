@@ -1,4 +1,5 @@
 import express from "express"
+import cors from "cors"
 import { config } from "./config.js"
 import { connectDB } from "./101_db/database.js"
 import ApiRouter from "./01_router/index.js"
@@ -9,6 +10,7 @@ import {currTime} from "./102_utils/time.js";
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 app.use("/api", ApiRouter)
 

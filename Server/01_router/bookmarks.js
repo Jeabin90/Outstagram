@@ -1,6 +1,6 @@
 import express from "express"
-import * as bookmarkController from "../03_controller/bookmarks"
-import { isAuth } from "../02_middleware/auth"
+import * as bookmarkController from "../03_controller/bookmarks.js"
+import { isAuth } from "../02_middleware/auth.js"
 
 const router = express.Router()
 

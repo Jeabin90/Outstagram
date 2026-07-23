@@ -1,4 +1,4 @@
-import * as bookmarkService from "../04_service/bookmarks"
+import * as bookmarkService from "../04_service/bookmarks.js"
 
 // getMyBookmarks
 export async function getMyBookmarks(req, res) {
@@ -6,14 +6,16 @@ export async function getMyBookmarks(req, res) {
         const userId = req.userId;
         const bookmarks = await bookmarkService.getMyBookmarks({ userId });
 
-        const posts = bookmarks.map((b) => ({
+        const posts = bookmarks
+            .filter((b) => b.postId) 
+            .map((b) => ({
             postId: b.postId._id,
             title: b.postId.title,
-            authorLoginId: b.postId.userId?.loginId || "",
+            authorLoginId: b.postId.authorUserid || "",
             viewCount: b.postId.viewCount || 0,
             createdAt: b.postId.createdAt,
             bookmarkedAt: b.createdAt
-        }));
+            }));
 
         return res.status(200).json({
             success: true,
